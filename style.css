@@ -93,6 +93,7 @@ select, option {
     cursor: pointer;
     z-index: 10000;
     transition: background 0.2s, color 0.2s;
+    opacity: 0.1;
 }
 
 #devToggle:hover {
@@ -129,6 +130,91 @@ select, option {
 
 #devPanel th {
     background: #eee;
+}
+
+/* introduction modal styling */
+.intro-top-bar, .intro-bottom-bar {
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 10px;
+}
+
+.intro-top-bar, .intro-bottom-bar {
+    position: relative;
+}
+
+.intro-top-bar button, .intro-bottom-bar button {
+    flex: 1;
+    padding: 8px;
+    border: none;
+    background: #fff7e0; /* light yellow */
+    cursor: pointer;
+    font-size: 14px;
+    color: #333;
+    transition: background 0.3s;
+}
+
+.intro-top-bar button.active, .intro-bottom-bar button.active {
+    background: var(--primary-color);
+    color: white;
+}
+
+/* sliding highlight bar */
+.intro-top-bar .highlight, .intro-bottom-bar .highlight {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 0;
+    height: 100%;
+    background: var(--primary-color);
+    z-index: -1;
+    transition: transform 0.3s, width 0.3s;
+}
+
+.intro-content {
+    min-height: 200px;
+    max-height: 50vh;
+    overflow-y: auto;
+    background: white;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    margin-bottom: 10px;
+    font-size: 14px;
+    text-align: left;
+}
+
+.modal-close {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+
+    width: 28px;
+    height: 28px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background: #F4C430;
+    border-radius: 50%;
+    border: none;
+
+    font-size: 16px;
+    cursor: pointer;
+
+    box-shadow: none;
+    z-index: 2500; /* ensure it's on top of modal content */
+}
+
+.modal-close:hover {
+    background: #e74c3c;
+    color: white;
+}
+
+.intro-modal {
+    position: relative;
+    max-width: 400px;
 }
 
 
@@ -193,12 +279,13 @@ button:active {
 }
 
 button.secondary {
-    background: linear-gradient(to bottom, #95a5a6, #7f8c8d);
-    box-shadow: 0 4px 0 #6c7a7d;
+    /* use a muted yellow gradient instead of gray to fit theme */
+    background: linear-gradient(to bottom, #e0d07a, #c9b253);
+    box-shadow: 0 4px 0 #b49e40;
 }
 
 button.secondary:active {
-    box-shadow: 0 0 0 #6c7a7d;
+    box-shadow: 0 0 0 #b49e40;
 }
 
 /* 3D 翻牌卡片 */
@@ -395,11 +482,16 @@ button.secondary:active {
 .modal-buttons button {
     flex: 1;
     margin-bottom: 0;
+    /* force primary theme color for modal action buttons */
+    background: linear-gradient(to bottom, var(--primary-color), var(--primary-dark));
+    color: white;
+    box-shadow: 0 4px 0 #b8860b;
 }
 
 .modal-buttons .cancel {
-    background: linear-gradient(to bottom, #bdc3c7, #95a5a6);
-    box-shadow: 0 4px 0 #7f8c8d;
+    /* light yellowish cancel button instead of gray */
+    background: linear-gradient(to bottom, #f5e1a4, #e4c97a);
+    box-shadow: 0 4px 0 #c9b36a;
 }
 
 /* 顶部按钮区域 */

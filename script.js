@@ -25,6 +25,9 @@ const translations = {
         start_discussion: "请开始游戏讨论",
         progress: "进度",
         game_ended: "结束",
+        introduction: "介绍",
+        game_rules: "游戏规则",
+        tool_usage: "工具使用",
         // 身份翻译
         role_thief: "奶酪大盗",
         role_civilian: "普通人"
@@ -54,6 +57,9 @@ const translations = {
         start_discussion: "Start Game Discussion",
         progress: "Progress",
         game_ended: "Ended",
+        introduction: "Introduction",
+        game_rules: "Game Rules",
+        tool_usage: "Tool Usage",
         // 身份翻译
         role_thief: "Cheese Thief",
         role_civilian: "Civilian"
@@ -83,6 +89,9 @@ const translations = {
         start_discussion: "Начните обсуждение игры",
         progress: "Прогресс",
         game_ended: "Завершено",
+        introduction: "Введение",
+        game_rules: "Правила игры",
+        tool_usage: "Использование инструмента",
         // 身份翻译
         role_thief: "Сырный Вор",
         role_civilian: "Гражданин"
@@ -112,6 +121,9 @@ const translations = {
         start_discussion: "Ойын талқылауын бастаңыз",
         progress: "Прогресс",
         game_ended: "Аяқталды",
+        introduction: "Кіріспе",
+        game_rules: "Ойын ережелері",
+        tool_usage: "Құралды пайдалану",
         // 身份翻译
         role_thief: "Ұрлықшы",
         role_civilian: "Қарапайым"
@@ -129,6 +141,32 @@ const langConfig = {
 let currentLang = 'en'
 let roles = []
 let dice = []
+
+const introTexts = {
+  en: {
+    rules: "Cheese Thief (4–8 players, 10–15 min)<p>Goal:<p>One player secretly steals the cheese. Others must find the thief.<p>Setup:<p>Each player gets a hidden role and rolls a die to determine the hour they wake up (1–6).<p>Night:<p>Everyone closes eyes. The host calls hours 1→6.<p>Players with that number open eyes.<p>- Sleepy Mouse alone: may peek at one die.<p>- Multiple players awake: no action.<p>- Cheese Thief: must steal the cheese at their hour.<p>Day:<p>Players discuss what they saw and vote.<p>Win:<p>If the thief is voted out → Sleepy Mice win.<p>Otherwise → Thief wins (with accomplice if any).",
+    
+    usage: "Tool Usage:<p>1. Enter number of players and start.<p>2. Pass the phone to player 1.<p>3. Tap the card to reveal role and dice number.<p>4. After reading, tap again to hide.<p>5. Pass the phone to the next player.<p>6. Repeat until everyone has seen their role."
+  },
+
+  zh: {
+    rules: "奶酪大盗（4–8人，10–15分钟）<p>目标：<p>一名玩家偷走奶酪，其余玩家找出大盗。<p>准备：<p>每人获得隐藏身份并掷骰子（1–6）决定几点醒来。<p>夜晚：<p>所有人闭眼，主持人依次喊1到6点。<p>对应点数玩家睁眼。<p>- 贪睡鼠若独自醒来：可查看1个骰子<p>- 若多人同时醒：不能行动<p>- 奶酪大盗：轮到自己点数时必须偷奶酪<p>白天：<p>玩家讨论并投票。<p>胜利：<p>投出大盗→贪睡鼠胜。<p>否则→大盗阵营胜。",
+    
+    usage: "工具使用：<p>1. 输入玩家人数并开始。<p>2. 第1位玩家拿手机。<p>3. 点击卡牌查看身份和骰子点数。<p>4. 看完后再次点击隐藏。<p>5. 把手机交给下一位玩家。<p>6. 重复直到所有人看完。"
+  },
+
+  ru: {
+    rules: "Cheese Thief (4–8 игроков, 10–15 мин)<p>Цель:<p>Один игрок крадет сыр. Остальные должны найти вора.<p>Подготовка:<p>Каждый получает скрытую роль и бросает кубик (1–6) — это час пробуждения.<p>Ночь:<p>Все закрывают глаза. Ведущий называет часы 1→6.<p>Игроки с этим числом открывают глаза.<p>- Если Сонная мышь одна: может посмотреть 1 кубик<p>- Если несколько игроков: действия нет<p>- Вор сыра: обязан украсть сыр в свой час<p>День:<p>Игроки обсуждают и голосуют.<p>Победа:<p>Если вор найден → мыши победили.<p>Иначе → вор победил.",
+    
+    usage: "Использование инструмента:<p>1. Введите число игроков и нажмите старт.<p>2. Передайте телефон игроку 1.<p>3. Нажмите карту, чтобы увидеть роль и число.<p>4. После просмотра нажмите снова, чтобы скрыть.<p>5. Передайте телефон следующему игроку.<p>6. Повторите для всех игроков."
+  },
+
+  kk: {
+    rules: "Cheese Thief (4–8 ойыншы, 10–15 минут)<p>Мақсат:<p>Бір ойыншы ірімдікті ұрлайды. Қалғандары ұрыны табуы керек.<p>Дайындық:<p>Әр ойыншы жасырын рөл алады және 1–6 кубик лақтырады (оянатын уақыты).<p>Түн:<p>Барлығы көзін жұмады. Жүргізуші 1→6 сағаттарды айтады.<p>Сол сан шыққан ойыншылар көзін ашады.<p>- Егер тышқан жалғыз болса: 1 кубикті қарай алады<p>- Бірнеше ойыншы болса: әрекет жоқ<p>- Ұры: өз уақытында ірімдікті ұрлайды<p>Күн:<p>Ойыншылар талқылайды және дауыс береді.<p>Жеңіс:<p>Ұры табылса → тышқандар жеңеді.<p>Табылмаса → ұры жеңеді.",
+    
+    usage: "Құралды пайдалану:<p>1. Ойыншылар санын енгізіп бастау.<p>2. Телефонды 1-ойыншыға беріңіз.<p>3. Картаны басып рөл мен санды қараңыз.<p>4. Қарап болған соң қайта басып жабыңыз.<p>5. Келесі ойыншыға беріңіз.<p>6. Барлығы көргенше қайталаңыз."
+  }
+};
 let currentPlayer = 0
 let isCardOpen = false
 let isGameEnd = false
@@ -432,6 +470,95 @@ function resetGame() {
     document.getElementById("game").classList.add("hidden")
     document.getElementById("setup").classList.remove("hidden")
 }
+
+// introduction modal logic
+let introLang = currentLang;
+let introSection = 'rules';
+
+function showIntro() {
+    const modal = document.getElementById('introModal');
+    if (!modal) return;
+    introLang = currentLang; // sync with UI language
+    modal.classList.add('active');
+    buildIntro();
+}
+
+function hideIntro() {
+    const modal = document.getElementById('introModal');
+    if (!modal) return;
+    modal.classList.remove('active');
+}
+
+function setIntroLang(lang) {
+    if (!langConfig[lang]) return;
+    introLang = lang;
+    // highlight buttons
+    document.querySelectorAll('#introModal .lang-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === lang);
+    });
+    buildIntro();
+}
+
+function setIntroSection(section) {
+    introSection = section;
+    document.querySelectorAll('#introModal .section-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-section') === section);
+    });
+    buildIntro();
+}
+
+function buildIntro() {
+    const contentEl = document.getElementById('introContent');
+    if (!contentEl) return;
+    // display stored text or placeholder if empty
+    const text = introTexts[introLang] ? introTexts[introLang][introSection] : '';
+    contentEl.innerHTML = text || ('<p style="color:#999;">('+introSection+' content goes here)</p>');
+    // language tabs
+    document.querySelectorAll('#introModal .lang-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-lang') === introLang);
+    });
+    // section tabs
+    document.querySelectorAll('#introModal .section-tab').forEach(btn => {
+        btn.classList.toggle('active', btn.getAttribute('data-section') === introSection);
+    });
+    // update highlight bars
+    ['.intro-top-bar', '.intro-bottom-bar'].forEach(selector => {
+        const bar = document.querySelector(selector);
+        if (!bar) return;
+        const active = bar.querySelector('button.active');
+        const hl = bar.querySelector('.highlight');
+        if (active && hl) {
+            hl.style.width = active.offsetWidth + 'px';
+            hl.style.transform = 'translateX(' + active.offsetLeft + 'px)';
+        }
+    });
+}
+
+// initialize introduction modal listeners
+window.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('#introModal .lang-tab').forEach(btn => {
+        btn.addEventListener('click', () => setIntroLang(btn.getAttribute('data-lang')));
+    });
+    document.querySelectorAll('#introModal .section-tab').forEach(btn => {
+        btn.addEventListener('click', () => setIntroSection(btn.getAttribute('data-section')));
+    });
+
+    // close button inside introduction modal
+    const closeBtn = document.querySelector('#introModal .modal-close');
+    if (closeBtn) {
+        closeBtn.addEventListener('click', hideIntro);
+    }
+
+    // also allow clicking outside the modal content to close
+    const introOverlay = document.getElementById('introModal');
+    if (introOverlay) {
+        introOverlay.addEventListener('click', (e) => {
+            if (e.target === introOverlay) {
+                hideIntro();
+            }
+        });
+    }
+});
 
 // developer panel toggle
 function buildDevPanel() {

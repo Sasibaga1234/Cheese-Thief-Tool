@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh-CN">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-<title>Cheese Thief Tool</title>
+<title>奶酪大盗工具</title>
 <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
@@ -41,6 +41,7 @@
         <div id="modeDesc" class="mode-desc" data-i18n="mode_desc_fair">确保 1-6 均匀分布，不会出现连续重复</div>
     </div>
 
+    <button id="introBtn" onclick="showIntro()" data-i18n="introduction">Introduction</button>
     <button onclick="startGame()" data-i18n="start">开始游戏</button>
 </div>
 
@@ -95,11 +96,32 @@
     </div>
 </div>
 
+<!-- introduction modal -->
+<div class="modal-overlay" id="introModal">
+    <div class="modal intro-modal">
+        <div class="intro-top-bar">
+            <div class="highlight"></div>
+            <button class="lang-tab" data-lang="en">English</button>
+            <button class="lang-tab" data-lang="kk">Қазақша</button>
+            <button class="lang-tab" data-lang="ru">Русский</button>
+            <button class="lang-tab" data-lang="zh">中文</button>
+        </div>
+        <div id="introContent" class="intro-content">
+            <!-- rules text goes here -->
+        </div>
+        <div class="intro-bottom-bar">
+            <div class="highlight"></div>
+            <button class="section-tab" data-section="rules" data-i18n="game_rules">Game Rules</button>
+            <button class="section-tab" data-section="usage" data-i18n="tool_usage">Tool Usage</button>
+        </div>
+        <button class="modal-close" aria-label="close">✖</button>
+    </div>
+</div>
+
 <!-- developer toggle -->
 <div id="devToggle" title="Show sequence">🔍</div>
 <div id="devPanel"></div>
 
 <script src="script.js"></script>
 </body>
-
 </html>
