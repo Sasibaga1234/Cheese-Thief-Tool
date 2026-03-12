@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+<title>奶酪大盗工具</title>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<!-- 语言切换 -->
+<div class="lang-switch">
+    <select id="langSelect">
+        <option value="en">🇬🇧 English</option>
+        <option value="kk">🇰🇿 Қазақша</option>
+        <option value="ru">🇷🇺 Русский</option>
+        <option value="zh">🇨🇳 中文</option>
+    </select>
+</div>
+
+<div id="setup" class="container fade-in">
+    <h2 data-i18n="title">🧀 奶酪大盗工具</h2>
+    
+    <div class="form-group">
+        <label data-i18n="players">玩家人数</label>
+        <select id="players">
+            <option value="6">6</option>
+            <option value="7">7</option>
+            <option value="8">8</option>
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label data-i18n="mode">骰子模式</label>
+        <select id="mode" onchange="updateModeDesc()">
+            <option value="fair" data-i18n="mode_fair">公平</option>
+            <option value="true" data-i18n="mode_random">随机</option>
+        </select>
+        <div id="modeDesc" class="mode-desc" data-i18n="mode_desc_fair">确保 1-6 均匀分布，不会出现连续重复</div>
+    </div>
+
+    <button onclick="startGame()" data-i18n="start">开始游戏</button>
+</div>
+
+
+<div id="game" class="container hidden fade-in">
+    <div class="top-buttons">
+        <button class="secondary" onclick="showRestartModal()" data-i18n="restart">🔄 重新开始</button>
+    </div>
+    
+    <h3 id="playerText" data-i18n="player">玩家 1</h3>
+    <div style="font-size: 14px; color: #888; margin-bottom: 10px;" id="progressText"></div>
+
+    <!-- 倒计时显示 -->
+    <div class="countdown-display" id="countdownDisplay">
+        ⏱️ <span id="countdownTimer">3</span>s
+    </div>
+
+    <!-- 锁定警告 -->
+    <div class="lock-warning" id="lockWarning" data-i18n="lock_warning">
+        ⚠️ 卡牌已锁定，请等待倒计时结束
+    </div>
+
+    <div class="card-container" id="cardContainer" onclick="toggleCard()">
+        <div class="card" id="card">
+            <div class="card-face card-front">
+                <h4 data-i18n="tap_card">点击翻牌</h4>
+                <div style="font-size: 40px; margin-top:10px;">🧀</div>
+            </div>
+            <div class="card-face card-back">
+                <div data-i18n="your_role">你的身份</div>
+                <div class="role-text" id="roleDisplay">?</div>
+                <div style="margin: 10px 0; border-top: 1px solid #eee; width: 50%;"></div>
+                <div data-i18n="dice_value">骰子点数</div>
+                <div class="dice-text" id="diceDisplay">?</div>
+                <div class="hint-text" data-i18n="tap_hide">点击隐藏并下一位</div>
+            </div>
+        </div>
+    </div>
+
+    <button id="resetBtn" class="hidden" onclick="resetGame()" data-i18n="finish">✅ 完成游戏</button>
+</div>
+
+<!-- 确认重启弹窗 -->
+<div class="modal-overlay" id="restartModal">
+    <div class="modal">
+        <h3 data-i18n="confirm_restart">⚠️ 确认重启？</h3>
+        <p data-i18n="confirm_msg">当前游戏进度将会丢失，确定要重新开始吗？</p>
+        <div class="modal-buttons">
+            <button class="cancel" onclick="hideRestartModal()" data-i18n="cancel">取消</button>
+            <button onclick="confirmRestart()" data-i18n="confirm">确认</button>
+        </div>
+    </div>
+</div>
+
+<!-- developer toggle -->
+<div id="devToggle" title="Show sequence">🔍</div>
+<div id="devPanel"></div>
+
+<script src="script.js"></script>
+</body>
+</html>
